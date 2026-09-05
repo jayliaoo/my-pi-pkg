@@ -36,12 +36,16 @@ See `docs/agents/triage-labels.md`.
 
 See `docs/agents/domain.md`.
 
+### AGENTS.md configuration
+
+Checks for `AGENTS.md` at the repository root. **If `AGENTS.md` does not exist, create it first** (with a top-level heading and basic project context). Then add or update the `## Agent skills` section to point to the issue tracker and skill conventions.
+
 ## Files written
 
 - `docs/agents/issue-tracker.md` — local markdown issue tracker conventions
 - `docs/agents/triage-labels.md` — label mapping
 - `docs/agents/domain.md` — domain doc consumer rules + layout
-- An `## Agent skills` section in `AGENTS.md` (if it exists)
+- `AGENTS.md` at the repo root — **created first if it does not exist**, then updated with an `## Agent skills` section
 
 ## Usage
 
