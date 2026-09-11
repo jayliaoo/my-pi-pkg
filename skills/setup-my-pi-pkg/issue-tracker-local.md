@@ -1,14 +1,16 @@
-# Issue tracker: Local Markdown
+# Local-Markdown Issue Tracker
 
-Issues and specs for this repo live as markdown files in `.scratch/`.
+Issues are tracked as local markdown files under `.scratch/`.
 
-## Conventions
+## Convention
 
 - One feature per directory: `.scratch/<feature-slug>/`
 - The spec is `.scratch/<feature-slug>/spec.md`
 - Implementation issues are one file per ticket at `.scratch/<feature-slug>/issues/<NN>-<slug>.md`, numbered from `01`, never a single combined tickets file
-- Triage state is recorded as a `Status:` line near the top of each issue file (see `triage-labels.md` for the role strings)
+- Triage state is recorded as a `Status:` line near the top of each issue file, using the default triage labels (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `done`)
 - Comments and conversation history append to the bottom of the file under a `## Comments` heading
+
+This is the only tracker. There are no remote variants.
 
 ## When a skill says "publish to the issue tracker"
 
@@ -16,15 +18,10 @@ Create a new file under `.scratch/<feature-slug>/` (creating the directory if ne
 
 ## When a skill says "fetch the relevant ticket"
 
-Read the file at the referenced path. The user will normally pass the path or the issue number directly.
+Read the file at the referenced path. The user will normally pass the path or the issue number directly. Always read the ticket's `Parent` spec alongside it.
 
 ## Wayfinding operations
 
-Used by `/wayfinder`. The **map** is a file with one **child** file per ticket.
-
-- **Map**: `.scratch/<effort>/map.md` (the Notes / Decisions-so-far / Fog body).
-- **Child ticket**: `.scratch/<effort>/issues/NN-<slug>.md`, numbered from `01`, with the question in the body. A `Type:` line records the ticket type (`research`/`prototype`/`grilling`/`task`); a `Status:` line records `claimed`/`resolved`.
-- **Blocking**: a `Blocked by: NN, NN` line near the top. A ticket is unblocked when every file it lists is `resolved`.
-- **Frontier**: scan `.scratch/<effort>/issues/` for files that are open, unblocked, and unclaimed; first by number wins.
-- **Claim**: set `Status: claimed` and save before any work.
-- **Resolve**: append the answer under an `## Answer` heading, set `Status: resolved`, then append a context pointer (gist + link) to the map's Decisions-so-far in `map.md`.
+- **Find issues by status:** search for files under `.scratch/` containing `Status: <role>` (e.g. `rg -l "^Status: ready-for-agent" .scratch/`).
+- **Find issues by feature:** list files under `.scratch/<feature-slug>/issues/`.
+- **Read an issue:** read the `.scratch/<feature-slug>/issues/<NN>-<slug>.md` file.
